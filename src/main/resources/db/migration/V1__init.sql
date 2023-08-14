@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS accounts(
+    id BIGINT NOT NULL PRIMARY KEY ,
+    username VARCHAR(36) NOT NULL ,
+    password VARCHAR(200) NOT NULL
+);
