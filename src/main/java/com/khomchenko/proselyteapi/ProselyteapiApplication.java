@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProselyteapiApplication {
 
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProselyteapiApplication.class, args);
 	}
