@@ -30,7 +30,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 
     @Override
     public Mono<Account> getAccountByApiKey(String apiKey) {
-        return hashOperations.get("API_KEY", apiKey).doOnSuccess(account -> log.info("found key in cache"))
+        return hashOperations.get(apiKey, apiKey).doOnSuccess(account -> log.info("found key in cache"))
                 .switchIfEmpty(
                         Mono.defer(() -> {
                                     log.info("going in db");
@@ -39,7 +39,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
                                 .switchIfEmpty(
                                         Mono.error(new ApiKeyNotFoundException("API key " + apiKey + " not found")))
                                 .flatMap(account -> hashOperations.put(
-                                        "API_KEY", account.getApiKey(), account).thenReturn(account)));
+                                        account.getApiKey(), account.getApiKey(), account).thenReturn(account)));
     }
 
 }

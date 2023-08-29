@@ -53,7 +53,7 @@ public class ApiKeyFilter implements WebFilter {
             return chain.filter(exchange);
         }
         return Mono.just(request.getQueryParams().get("api_key").get(0))
-                .doOnError(throwable -> new ApiKeyNotFoundException("Ss"))
+                .onErrorResume(throwable -> Mono.error(new RuntimeException("WHERE KEY")))
                 .flatMap(apiKeyService::getAccountByApiKey)
                 .flatMap(s -> chain.filter(exchange));
     }
