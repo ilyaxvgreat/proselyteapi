@@ -3,7 +3,7 @@ package com.khomchenko.proselyteapi.util.constants;
 public interface ControllerConstants {
 
     interface CompaniesController{
-        String COMPANIES = "/companies";
+        String COMPANIES = "/v1/companies";
     }
 
     interface StocksController{

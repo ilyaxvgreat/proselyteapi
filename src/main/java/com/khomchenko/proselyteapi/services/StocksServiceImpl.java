@@ -28,15 +28,6 @@ public class StocksServiceImpl implements StocksService {
                 .switchIfEmpty(Mono.error(new RuntimeException("NO SUCH CODE")))
                 .flatMap(code -> stocksListOperations.range(stockCode, 0,-1).collectList())
                 .switchIfEmpty(stocksRepository.findAllByCode(stockCode).map(stock -> stocksMapper.toDto(stock)).collectList());
-
-//        return Mono.zip(companyRepository.findByCode(stockCode), stocksRepository.findAllByCode(stockCode).collectList())
-//                .map(objects -> {
-//                    CompanyDto company = companyMapper.toDto(objects.getT1());
-//                    List<StockDto> stocks = objects.getT2().stream().map(stocksMapper::toDto).toList();
-//                    company.setStocks(stocks);
-//                    return company;
-//                })
-//                .map(CompanyDto::getStocks);
     }
 
     @Override

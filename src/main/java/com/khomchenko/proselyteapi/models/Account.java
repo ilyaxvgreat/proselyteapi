@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
@@ -17,10 +18,13 @@ public class Account implements Serializable {
     @Id
     private Integer id;
 
+    @Column("username")
+    private String password;
+    @Column("password")
+
     private String username;
 
-    private String password;
-
+    @Column("api_key")
 
     private String apiKey;
 }

@@ -6,7 +6,6 @@ import com.khomchenko.proselyteapi.models.Account;
 import com.khomchenko.proselyteapi.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.ReactiveHashOperations;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -19,7 +18,6 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
     private final AccountMapper accountMapper;
-    private final ReactiveHashOperations<String, String, Account> hashOperations;
 
     @Override
     public Mono<AccountDto> saveAccount(String username, String password) {

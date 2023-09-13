@@ -19,26 +19,7 @@ public class ApiKeyFilter implements WebFilter {
 
     private final ApiKeyService apiKeyService;
 
-//    @Override
-//    public  Mono<ServerResponse> filter(ServerRequest request,
-//                                                 HandlerFunction<ServerResponse> next) {
-//        log.info("IN FILTER");
-//        String requestPath = request.requestPath().value();
-//        if (requestPath.contains("/api/v1/get-api-key")) {
-//            return next.handle(request);
-//        }
-//
-//        if (requestPath.contains("/api/v1/register")) {
-//            return next.handle(request);
-//        }
-//
-//        return request.bodyToMono(ApiKeyDto.class)
-//                .flatMap(apiKeyDto -> Mono.just(apiKeyDto.getApiKey()))
-//                .switchIfEmpty(Mono.error(new ApiKeyNotFoundException("API Key is required in the request")))
-//                .flatMap(apiKeyService::getAccountByApiKey)
-//                .switchIfEmpty(Mono.error(new ApiKeyNotFoundException("API Key not found or invalid")))
-//                .flatMap(account -> next.handle(request));
-//    }
+    //TODO add rate limiter
 
     @Override
     public @NonNull Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
@@ -52,6 +33,8 @@ public class ApiKeyFilter implements WebFilter {
         if (requestPath.contains("/api/v1/register")) {
             return chain.filter(exchange);
         }
+
+        //TODO add custom excestions
         return Mono.just(request.getQueryParams().get("api_key").get(0))
                 .onErrorResume(throwable -> Mono.error(new RuntimeException("WHERE KEY")))
                 .flatMap(apiKeyService::getAccountByApiKey)

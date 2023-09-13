@@ -6,7 +6,6 @@ RUN whoami
 
 COPY target/proselyteapi.jar .
 
-
 ENTRYPOINT ["java"]
 
 CMD ["-jar", "/app/proselyteapi.jar"]

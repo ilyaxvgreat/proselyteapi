@@ -1,0 +1,27 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://postgres:5432/proselyteapi
+    username: postgres
+    password: postgres
+
+  webflux:
+    base-path: /api
+
+  flyway:
+    enabled: true
+    driver-class-name: org.postgresql.Driver
+    user: postgres
+    password: postgres
+    url: jdbc:postgresql://postgres:5432/proselyteapi
+
+  cache:
+    type: redis
+
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+  mvc:
+    problemdetails:
+      enabled: true

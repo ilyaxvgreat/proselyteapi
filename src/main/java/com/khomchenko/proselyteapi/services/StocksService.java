@@ -9,6 +9,5 @@ import java.util.List;
 public interface StocksService {
     Mono<List<StockDto>> getAllCompanyStocks(String stockCode);
 
-
     Mono<StockDto> save(Stock stock);
 }
