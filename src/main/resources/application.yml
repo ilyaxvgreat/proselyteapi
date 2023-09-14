@@ -1,8 +1,9 @@
 spring:
   r2dbc:
-    url: r2dbc:postgresql://postgres:5432/proselyteapi
+    url: r2dbc:postgresql://db:5432
     username: postgres
     password: postgres
+    name: proselyteapi
 
   webflux:
     base-path: /api
@@ -12,7 +13,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     user: postgres
     password: postgres
-    url: jdbc:postgresql://postgres:5432/proselyteapi
+    url: jdbc:postgresql://db:5432/proselyteapi
 
   cache:
     type: redis

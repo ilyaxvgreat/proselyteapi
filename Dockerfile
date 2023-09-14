@@ -4,8 +4,9 @@ WORKDIR /app
 RUN echo deploying as:
 RUN whoami
 
-COPY target/proselyteapi.jar .
+COPY . .
+RUN mvn clean install -DskipTests=true
 
 ENTRYPOINT ["java"]
 
-CMD ["-jar", "/app/proselyteapi.jar"]
+CMD ["-jar", "/app/target/proselyteapi.jar"]
